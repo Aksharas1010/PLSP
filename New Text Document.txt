@@ -1,0 +1,19 @@
+select top 10 * from Commodity_Sauda where ClientId=1290119560
+select top 10 * from Commodity_Contract
+select distinct product from Commodity_Sauda
+exec SpTaxPandLExcel_V2 644495,1290816768,'2023-2024','Commodity'
+select * from Tax_Profit_Details_Commodity where Type='CMD'
+delete from Tax_Profit_Details_Commodity
+exec SpTax_GeneratePandL_Commodity_V1 '644495','1290816768','2023-04-01','2024-03-31','A',0
+exec SpLedgerBalancePandL_V1 '1290693759','2023-2024' 
+exec SpOtherChargePandL_V1 '1290693759','2023-2024' 
+exec SpGetOpenPositionDetails '1290693759','2023-04-01','2024-03-31'
+exec SpGetClosedPositionDetails '1290693759','2023-04-01','2024-03-31'
+sp_helptext SpTax_GeneratePandL_CDS
+1291236104,1290229308,1290236697,1290693759
+
+select top 500 * from Commodity_Sauda where ClientId in(1290816768)
+
+
+select * from Tax_Profit_Detail_cash 
+inner join 
